@@ -5,10 +5,12 @@ import { AcortarRoutes } from '../Acortar/routes/AcortarRoutes';
 import { useAuthStore } from '../hooks';
 import { Box, CircularProgress } from '@mui/material';
 import { HomePage } from '../Acortar/pages/HomePage'; 
+import { RedirectPage } from '../Acortar/pages/RedirectPage'; 
+
 
 export const AppRouter = () => {
   const { status, checkAuthToken } = useAuthStore();
-  // const authStatus = 'not-authenticated'; // 'authenticated'; // 'not-authenticated';
+  // const authStatus = 'not-authenticated'; // 'authenticated';
 
   useEffect(() => {
       checkAuthToken();
@@ -31,17 +33,17 @@ export const AppRouter = () => {
 
   return (
     <Routes>
+        
+        
+        <Route path="/" element={<HomePage />} />
 
-      <Route path="/home" element={<HomePage />} />
+        <Route path="/short/:id" element={<RedirectPage />} />
 
-      {status === 'authenticated' ? (
-        <Route path="/*" element={<AcortarRoutes />} />
-      ) : (
+
         <Route path="/auth/*" element={<AuthRoutes />} />
-      )}
 
-      <Route path="/*" element={<Navigate to="/home" />} />
 
+    
     </Routes>
   );
 }

@@ -1,9 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AppAPI } from '../api';
 import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store';
+import { useNavigate } from 'react-router-dom';
 
 
 export const useAuthStore = () => {
+    const navigate = useNavigate();
 
     const { status, user, errorMessage } = useSelector( state => state.auth );
     const dispatch = useDispatch();
@@ -14,9 +16,8 @@ export const useAuthStore = () => {
             const { data } = await AppAPI.post('/auth',{ email, password });
             localStorage.setItem('token', data.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
-            console.log(data);
             dispatch( onLogin({ name: data.name, uid: data.uid, rol:data.rol }) );
-            
+            navigate("/")
         } catch (error) {
             dispatch( onLogout('Credenciales incorrectas') );
             setTimeout(() => {

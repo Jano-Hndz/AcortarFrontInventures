@@ -1,11 +1,11 @@
-import { Link as RouterLink } from 'react-router-dom';
-import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
+
+import { Alert, Button, Grid, TextField, Typography } from '@mui/material';
 import Swal from 'sweetalert2';
 
 import { AuthLayout } from '../layout/AuthLayout';
 
 import { useForm,useAuthStore } from '../../hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const loginFormFields = {
@@ -13,9 +13,11 @@ const loginFormFields = {
   loginPassword: '',
 }
 
+import { useNavigate } from 'react-router-dom';
 
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
 
   
   const { startLogin, errorMessage } = useAuthStore();
@@ -32,6 +34,8 @@ export const LoginPage = () => {
       Swal.fire('Error en la autenticación', 'Correo y/o contraseña incorrectas', 'error');
     }    
   }, [errorMessage])
+
+
 
   return (
     <AuthLayout title="Inicio de Sesión" >
@@ -79,12 +83,13 @@ export const LoginPage = () => {
                 <Button
                   type="submit" 
                   variant='contained' 
-                  style={{backgroundColor: '#944eb3'}}
+                  style={{backgroundColor: '#036298'}}
                   fullWidth>
                   <Typography sx={{ ml: 1 ,color: 'white' }}>Iniciar Sesión</Typography>
                 </Button>
               </Grid>
             </Grid>
+
 
           </Grid>
 
