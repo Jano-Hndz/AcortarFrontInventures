@@ -1,21 +1,18 @@
-import { useState } from "react";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import {
     Box,
     Button,
+    CircularProgress,
     TextField,
     Typography,
-    CircularProgress,
 } from "@mui/material";
-import ContentCutIcon from "@mui/icons-material/ContentCut";
+import { useState } from "react";
 import Swal from "sweetalert2";
-import { useAuthStore } from "../../hooks/useAuthStore";
-import { useNavigate } from "react-router-dom";
-import { AcortarLayout } from "../layout/AcortarLayout";
-import { getData } from "../../helpers/getData";
 import { CreacionURLAcortar } from "../../helpers/AcortarAPI";
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
-
+import { getData } from "../../helpers/getData";
+import { useAuthStore } from "../../hooks/useAuthStore";
+import { AcortarLayout } from "../layout/AcortarLayout";
 
 export const CreacionURLPage = () => {
     const [edit, setEdit] = useState(true);
@@ -25,9 +22,8 @@ export const CreacionURLPage = () => {
     const [validarURL, setValidarURL] = useState(false);
     const [FlagLogin, setFlagLogin] = useState(true);
     const { status, user } = useAuthStore();
-    
-    const URLBase = 'https://acortar-front-inventures.vercel.app/cut/'
 
+    const URLBase = "https://acortar-front-inventures.vercel.app/cut/";
 
     const { URL } = getData();
 
@@ -134,7 +130,6 @@ export const CreacionURLPage = () => {
                             maxWidth={500}
                             mt={2}
                         >
-                        
                             <Box
                                 display="flex"
                                 flexDirection={{ xs: "column", sm: "row" }}
@@ -168,7 +163,6 @@ export const CreacionURLPage = () => {
                                     color="primary"
                                     onClick={handleCreateUrl}
                                     startIcon={<AutoFixHighIcon />}
-                                    
                                     sx={{
                                         flexShrink: 0,
                                         width: { xs: "100%", sm: "auto" },

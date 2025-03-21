@@ -1,11 +1,10 @@
-import { useState } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
 import ContentCutIcon from "@mui/icons-material/ContentCut";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuthStore } from "../../hooks/useAuthStore";
-import { useNavigate } from "react-router-dom";
-import { AcortarLayout } from '../layout/AcortarLayout';
-
+import { AcortarLayout } from "../layout/AcortarLayout";
 
 export const HomePage = () => {
     const [url, setUrl] = useState("");
@@ -13,23 +12,22 @@ export const HomePage = () => {
     const navigate = useNavigate();
 
     const handleShorten = () => {
-      if (!url.trim()) {
-        Swal.fire({
-            title: "Error",
-            text: "No has escrito ninguna URL.",
-            icon: "warning",
-            confirmButtonText: "Aceptar",
-        });
-        return;
-    }
-        
+        if (!url.trim()) {
+            Swal.fire({
+                title: "Error",
+                text: "No has escrito ninguna URL.",
+                icon: "warning",
+                confirmButtonText: "Aceptar",
+            });
+            return;
+        }
+
         if (status === "authenticated") {
             navigate("acortar", {
                 state: {
-                    URL:url
-                }
+                    URL: url,
+                },
             });
-
         } else if (status === "not-authenticated") {
             Swal.fire({
                 title: "Iniciar sesión para más opciones",
@@ -44,8 +42,8 @@ export const HomePage = () => {
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     navigate("acortar", {
                         state: {
-                            URL:url
-                        }
+                            URL: url,
+                        },
                     });
                 }
             });

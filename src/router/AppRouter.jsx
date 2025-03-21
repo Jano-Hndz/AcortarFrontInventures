@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AuthRoutes } from "../auth/routes/AuthRoutes";
 import { useEffect } from "react";
-import { AcortarRoutes } from "../Acortar/routes/AcortarRoutes";
 import { useAuthStore } from "../hooks";
 import { Box, CircularProgress } from "@mui/material";
 import { HomePage } from "../Acortar/pages/HomePage";

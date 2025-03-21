@@ -30,7 +30,6 @@ import AutorenewIcon from "@mui/icons-material/Autorenew";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { useMediaQuery, useTheme } from "@mui/material";
 
-
 const AccordionItem = ({ Data, setDataAcortadosAcordion }) => {
     const shortURL = `https://acortar-front-inventures.vercel.app/cut/${Data.URLAcortado}`;
     const theme = useTheme();
