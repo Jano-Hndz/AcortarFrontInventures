@@ -26,7 +26,7 @@ export const CreacionURLPage = () => {
     const [FlagLogin, setFlagLogin] = useState(true);
     const { status, user } = useAuthStore();
     
-    const URLBase = 'http://localhost:5173/cut/'
+    const URLBase = 'https://acortar-front-inventures.vercel.app/cut/'
 
 
     const { URL } = getData();

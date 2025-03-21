@@ -118,7 +118,7 @@ const AccordionItem = ({ Data, setDataAcortadosAcordion }) => {
                     sx={{ display: "flex", alignItems: "center", my: 2, ml: 2 }}
                 >
                     <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                        {Data.URLAcortado}
+                        https://acortar-front-inventures.vercel.app/cut/{Data.URLAcortado}
                     </Typography>
                 </Box>
             </AccordionSummary>
