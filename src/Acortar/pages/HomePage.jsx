@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { AcortarLayout } from '../layout/AcortarLayout';
 
 
-
 export const HomePage = () => {
     const [url, setUrl] = useState("");
     const { status } = useAuthStore();
@@ -25,7 +24,12 @@ export const HomePage = () => {
     }
         
         if (status === "authenticated") {
-            console.log("Listo");
+            navigate("acortar", {
+                state: {
+                    URL:url
+                }
+            });
+
         } else if (status === "not-authenticated") {
             Swal.fire({
                 title: "Iniciar sesión para más opciones",
@@ -36,7 +40,13 @@ export const HomePage = () => {
                 cancelButtonText: "Seguir como invitado",
             }).then((result) => {
                 if (result.isConfirmed) {
-                  navigate("auth/login");
+                    navigate("auth/login");
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    navigate("acortar", {
+                        state: {
+                            URL:url
+                        }
+                    });
                 }
             });
         }
@@ -52,7 +62,7 @@ export const HomePage = () => {
                 height="70vh"
                 p={2}
             >
-                <Typography variant="h4" gutterBottom textAlign="center">
+                <Typography variant="h3" gutterBottom textAlign="center">
                     Bienvenido al Acortador de Links
                 </Typography>
                 <Typography

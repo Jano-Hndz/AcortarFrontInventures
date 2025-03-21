@@ -25,7 +25,7 @@ import { useAuthStore } from "../../hooks/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
+import ListAltIcon from '@mui/icons-material/ListAlt';
 
 export const NavBar = ({ drawerWidth = 0 }) => {
   const theme = useTheme();
@@ -77,15 +77,15 @@ export const NavBar = ({ drawerWidth = 0 }) => {
           {!isMobile && status === "authenticated" && (
             <>
               <Button
-                onClick={() => navigate("/urls-acortados")}
+                onClick={() => navigate("/paneldecontrol")}
                 sx={{ color: "white", marginLeft: "auto" }}
               >
                 <Typography variant="button" fontSize={16}>
-                  URLs Acortados
+                  Panel de Control
                 </Typography>
               </Button>
               <Button onClick={startLogout} sx={{ color: "white" }}>
-                <Typography variant="button" fontSize={16} marginRight={1}>
+                <Typography variant="button" fontSize={16} marginRight={1} marginLeft={5}>
                   Cerrar sesión
                 </Typography>
                 <ExitToAppIcon />
@@ -122,11 +122,11 @@ export const NavBar = ({ drawerWidth = 0 }) => {
             {status === "authenticated" && (
               <>
                 <ListItem disablePadding>
-                  <ListItemButton onClick={() => handleNavigate("/urls-acortados")}>
+                  <ListItemButton onClick={() => handleNavigate("/paneldecontrol")}>
                     <ListItemIcon>
-                      <LinkIcon />
+                      <ListAltIcon />
                     </ListItemIcon>
-                    <ListItemText primary="URLs Acortados" />
+                    <ListItemText primary="Panel de Control" />
                   </ListItemButton>
                 </ListItem>
 
