@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const AppAPI = axios.create({
-    baseURL: 'http://localhost:4000/api'
+    baseURL: 'https://acortar-back-inventures.vercel.app/api'
 });
 
 // Todo: configurar interceptores
