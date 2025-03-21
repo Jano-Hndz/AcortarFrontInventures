@@ -134,9 +134,7 @@ export const CreacionURLPage = () => {
                             maxWidth={500}
                             mt={2}
                         >
-                            <Typography variant="h6" textAlign="center">
-                                pagina.com/cut/
-                            </Typography>
+                        
                             <Box
                                 display="flex"
                                 flexDirection={{ xs: "column", sm: "row" }}

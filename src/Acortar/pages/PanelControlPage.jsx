@@ -27,8 +27,34 @@ import ShareIcon from "@mui/icons-material/Share";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { useMediaQuery, useTheme } from "@mui/material";
+
 
 const AccordionItem = ({ Data, setDataAcortadosAcordion }) => {
+    const shortURL = `https://acortar-front-inventures.vercel.app/cut/${Data.URLAcortado}`;
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+    const handleCopyURL = async () => {
+        try {
+            await navigator.clipboard.writeText(shortURL);
+            Swal.fire({
+                title: "Copiado",
+                text: "La URL acortada ha sido copiada al portapapeles.",
+                icon: "success",
+                timer: 2000,
+                showConfirmButton: false,
+            });
+        } catch (error) {
+            Swal.fire({
+                title: "Error",
+                text: "No se pudo copiar la URL.",
+                icon: "error",
+            });
+        }
+    };
+
     const handleRenovar = async () => {
         try {
             const result = await Swal.fire({
@@ -115,10 +141,24 @@ const AccordionItem = ({ Data, setDataAcortadosAcordion }) => {
                 id={`panel-${Data._id}-header`}
             >
                 <Box
-                    sx={{ display: "flex", alignItems: "center", my: 2, ml: 2 }}
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        my: 2,
+                        ml: 2,
+                        width: "100%",
+                    }}
                 >
-                    <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                        https://acortar-front-inventures.vercel.app/cut/{Data.URLAcortado}
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            fontWeight: "bold",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            maxWidth: "80%",
+                        }}
+                    >
+                        {isMobile ? Data.URLAcortado : shortURL}
                     </Typography>
                 </Box>
             </AccordionSummary>
@@ -171,6 +211,17 @@ const AccordionItem = ({ Data, setDataAcortadosAcordion }) => {
                 >
                     <Button
                         variant="contained"
+                        sx={{
+                            width: { xs: "90%", sm: "auto" },
+                            height: "50px",
+                        }}
+                        onClick={handleCopyURL}
+                        startIcon={<ContentCopyIcon />}
+                    >
+                        Copiar URL
+                    </Button>
+                    <Button
+                        variant="contained"
                         color="primary"
                         sx={{
                             width: { xs: "90%", sm: "auto" },
@@ -179,7 +230,7 @@ const AccordionItem = ({ Data, setDataAcortadosAcordion }) => {
                         onClick={handleRenovar}
                         startIcon={<AutorenewIcon />}
                     >
-                        Renovar URL (Expira en 3 días)
+                        Renovar URL
                     </Button>
                     <Button
                         variant="contained"
